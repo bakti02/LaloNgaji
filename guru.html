@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Guru - GuruNgajiPrivat</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GuruNgajiPrivat</h1>
+            <p>Les Mengaji Privat dengan Guru Profesional</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="guru.html" class="active">Daftar Guru</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="daftar-guru">
+        <div class="container">
+            <h2>Daftar Guru Mengaji Privat</h2>
+            <p>Pilih guru yang sesuai dengan kebutuhan Anda</p>
+            
+            <div class="guru-list">
+                <!-- Guru 1 -->
+                <div class="guru-card">
+                    <img src="images/guru1.jpg" alt="Guru Ustadz Ahmad">
+                    <h3>Ustadz Ahmad, S.Pd.I</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jakarta Selatan</p>
+                    <p><i class="fas fa-graduation-cap"></i> Lulusan UIN Jakarta</p>
+                    <p><i class="fas fa-star"></i> Pengalaman 10 tahun</p>
+                    <p><i class="fas fa-book"></i> Spesialis: Tajwid & Tahsin</p>
+                    <p class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.7 (32 review)</p>
+                    <a href="booking.html?guru=Ustadz Ahmad" class="cta-button">Booking Sekarang</a>
+                </div>
+                
+                <!-- Guru 2 -->
+                <div class="guru-card">
+                    <img src="images/guru2.jpg" alt="Guru Ustadzah Fatimah">
+                    <h3>Ustadzah Fatimah, S.Ag</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jakarta Timur</p>
+                    <p><i class="fas fa-graduation-cap"></i> Lulusan UNJ</p>
+                    <p><i class="fas fa-star"></i> Pengalaman 8 tahun</p>
+                    <p><i class="fas fa-book"></i> Spesialis: Anak-anak & Pemula</p>
+                    <p class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0 (28 review)</p>
+                    <a href="booking.html?guru=Ustadzah Fatimah" class="cta-button">Booking Sekarang</a>
+                </div>
+                
+                <!-- Guru 3 -->
+                <div class="guru-card">
+                    <img src="images/guru3.jpg" alt="Guru Ustadz Bambang">
+                    <h3>Ustadz Bambang, Lc.</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jakarta Pusat</p>
+                    <p><i class="fas fa-graduation-cap"></i> Lulusan Al-Azhar Kairo</p>
+                    <p><i class="fas fa-star"></i> Pengalaman 15 tahun</p>
+                    <p><i class="fas fa-book"></i> Spesialis: Qira'ah & Tahfizh</p>
+                    <p class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0 (45 review)</p>
+                    <a href="booking.html?guru=Ustadz Bambang" class="cta-button">Booking Sekarang</a>
+                </div>
+                
+                <!-- Guru 4 -->
+                <div class="guru-card">
+                    <img src="images/guru4.jpg" alt="Guru Ustadzah Aisyah">
+                    <h3>Ustadzah Aisyah, M.Pd.I</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jakarta Barat</p>
+                    <p><i class="fas fa-graduation-cap"></i> Lulusan UIN Bandung</p>
+                    <p><i class="fas fa-star"></i> Pengalaman 12 tahun</p>
+                    <p><i class="fas fa-book"></i> Spesialis: Dewasa & Remedial</p>
+                    <p class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0 (37 review)</p>
+                    <a href="booking.html?guru=Ustadzah Aisyah" class="cta-button">Booking Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 GuruNgajiPrivat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mengambil parameter dari URL untuk mengetahui guru yang dipilih
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.cta-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const guruName = this.parentElement.querySelector('h3').textContent;
+                    localStorage.setItem('selectedGuru', guruName);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
