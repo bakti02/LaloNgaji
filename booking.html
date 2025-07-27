@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Guru - GuruNgajiPrivat</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GuruNgajiPrivat</h1>
+            <p>Les Mengaji Privat dengan Guru Profesional</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="guru.html">Daftar Guru</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="booking-form">
+        <div class="container">
+            <h2>Form Booking Guru Mengaji</h2>
+            <p id="selected-guru">Anda akan membooking: </p>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telepon">Nomor WhatsApp:</label>
+                    <input type="tel" id="telepon" name="telepon" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alamat">Alamat Lengkap:</label>
+                    <textarea id="alamat" name="alamat" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tanggal">Tanggal Mulai:</label>
+                    <input type="date" id="tanggal" name="tanggal" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="waktu">Waktu Belajar:</label>
+                    <select id="waktu" name="waktu" required>
+                        <option value="">Pilih Waktu</option>
+                        <option value="Pagi (08:00-11:00)">Pagi (08:00-11:00)</option>
+                        <option value="Siang (13:00-15:00)">Siang (13:00-15:00)</option>
+                        <option value="Sore (16:00-18:00)">Sore (16:00-18:00)</option>
+                        <option value="Malam (19:00-21:00)">Malam (19:00-21:00)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frekuensi">Frekuensi Pertemuan per Minggu:</label>
+                    <select id="frekuensi" name="frekuensi" required>
+                        <option value="">Pilih Frekuensi</option>
+                        <option value="1 kali">1 kali</option>
+                        <option value="2 kali">2 kali</option>
+                        <option value="3 kali">3 kali</option>
+                        <option value="Lebih dari 3 kali">Lebih dari 3 kali</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pesan">Pesan Tambahan:</label>
+                    <textarea id="pesan" name="pesan" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button">Submit Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 GuruNgajiPrivat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menampilkan nama guru yang dipilih
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guruParam = urlParams.get('guru');
+            const selectedGuru = guruParam || localStorage.getItem('selectedGuru') || 'Guru Belum Dipilih';
+            
+            document.getElementById('selected-guru').textContent += selectedGuru;
+            
+            // Menangani form submission
+            const bookingForm = document.getElementById('bookingForm');
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Mengumpulkan data form
+                const formData = {
+                    guru: selectedGuru,
+                    nama: document.getElementById('nama').value,
+                    email: document.getElementById('email').value,
+                    telepon: document.getElementById('telepon').value,
+                    alamat: document.getElementById('alamat').value,
+                    tanggal: document.getElementById('tanggal').value,
+                    waktu: document.getElementById('waktu').value,
+                    frekuensi: document.getElementById('frekuensi').value,
+                    pesan: document.getElementById('pesan').value
+                };
+                
+                // Membuat pesan untuk WhatsApp
+                const whatsappMessage = `Halo Admin GuruNgajiPrivat, saya ingin booking guru mengaji dengan detail berikut:
+                
+Nama: ${formData.nama}
+Email: ${formData.email}
+Telepon: ${formData.telepon}
+Guru yang dipilih: ${formData.guru}
+Alamat: ${formData.alamat}
+Tanggal Mulai: ${formData.tanggal}
+Waktu Belajar: ${formData.waktu}
+Frekuensi: ${formData.frekuensi}
+Pesan Tambahan: ${formData.pesan}
+
+Mohon konfirmasi ketersediaan guru. Terima kasih.`;
+                
+                // Encode pesan untuk URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                
+                // Redirect ke WhatsApp
+                window.location.href = `https://wa.me/6281234567890?text=${encodedMessage}`;
+            });
+        });
+    </script>
+</body>
+</html>
